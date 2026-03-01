@@ -1,7 +1,20 @@
 const Discord = require('discord.js-selfbot-v13');
 const axios = require('axios');
 const config = require('./config.json');
+const express = require('express');
 require('dotenv').config();
+
+// Setup Express server for UptimeRobot
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot is running!');
+});
+
+app.listen(PORT, () => {
+  console.log(`🌐 Server is running on port ${PORT}`);
+});
 
 const STATUS_URL = "https://discordapp.com/api/v8/users/@me/settings";
 const client = new Discord.Client({
