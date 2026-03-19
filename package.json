@@ -1,6 +1,6 @@
 {
   "author": "Noodle",
-  "name": "Moderation",
+  "name": "moderation",
   "version": "1.0.0",
   "description": "Discord Moderation",
   "main": "index.js",
@@ -14,11 +14,9 @@
   "license": "MIT",
   "dependencies": {
     "@discordjs/voice": "^0.18.0",
-    "axios": "^1.6.2",
     "discord.js": "latest",
     "discord.js-selfbot-v13": "^3.2.2",
     "dotenv": "^17.2.3",
-    "express": "^5.2.1",
     "libsodium-wrappers": "^0.7.15",
     "moment": "^2.29.4",
     "ms": "^2.1.3",
