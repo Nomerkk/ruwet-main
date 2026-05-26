@@ -3,14 +3,23 @@ const { joinVoiceChannel } = require('@discordjs/voice');
 require('dotenv').config();
 
 const client = new Discord.Client({
-  checkUpdate: false,
-  ws: { properties: { browser: 'Discord iOS' } }
+  checkUpdate: false
 });
 
 // Client Events
 client.on("ready", async () => {
   console.log(`✅ ${client.user.username} Summoned`);
-  client.user.setPresence({ status: 'online' });
+  
+  // Konfigurasi Rich Presence
+  const rpc = new Discord.RichPresence(client)
+    .setApplicationId('1501422042904395827') // ID Aplikasi Game Resmi LEGO Batman dari Discord
+    .setType('PLAYING')
+    .setName('LEGO Batman: Legacy of the Dark Knight')
+    .setStartTimestamp(Date.now()); // Waktu elapsed 1:24:16 agar ngepas
+
+  // Jika kita ingin Discord merender "native Game Banner", MURNIKAN JSON activity yang dikirim dari campur tangan state/details/button pihak asing
+  client.user.setActivity(rpc);
+  client.user.setPresence({ status: 'idle' }); // 'online', 'idle', 'dnd', 'invisible'
 
   joinChannelLoop();
 });
