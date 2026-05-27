@@ -28,9 +28,15 @@ client.on("ready", async () => {
   setInterval(() => {
     const messageChannel = client.channels.cache.get('1509032236027215993');
     if (messageChannel) {
-      messageChannel.send('kenapa nyak?')
-        .then(() => console.log('Pesan otomatis berhasil terkirim!'))
-        .catch(err => console.error('Gagal mengirim pesan:', err.message));
+      // Memberikan efek sedang mengetik (typing indicator)
+      messageChannel.sendTyping();
+      
+      // Delay 3 detik sebelum mengirim pesan agar realistis
+      setTimeout(() => {
+        messageChannel.send('kenapa nyak?')
+          .then(() => console.log('Pesan otomatis berhasil terkirim!'))
+          .catch(err => console.error('Gagal mengirim pesan:', err.message));
+      }, 3000);
     } else {
       console.log('Channel untuk pesan otomatis tidak ditemukan!');
     }
