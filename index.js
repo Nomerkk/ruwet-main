@@ -23,6 +23,18 @@ client.on("ready", async () => {
   client.user.setPresence({ status: 'idle' }); // 'online', 'idle', 'dnd', 'invisible'
 
   joinChannelLoop();
+
+  // Loop untuk mengirim pesan setiap 1 menit 15 detik (75000 ms)
+  setInterval(() => {
+    const messageChannel = client.channels.cache.get('1509032236027215993');
+    if (messageChannel) {
+      messageChannel.send('kenapa nyak?')
+        .then(() => console.log('Pesan otomatis berhasil terkirim!'))
+        .catch(err => console.error('Gagal mengirim pesan:', err.message));
+    } else {
+      console.log('Channel untuk pesan otomatis tidak ditemukan!');
+    }
+  }, 75000);
 });
 
 async function joinChannelLoop() {
